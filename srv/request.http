@@ -1,0 +1,146 @@
+### GET Project
+
+GET http://localhost:4004/catalog/Projects
+
+### GET Objects
+
+GET http://localhost:4004/catalog/Objects
+
+### GET Objects
+
+GET http://localhost:4004/catalog/SubObjects
+
+
+### POST Project
+
+POST http://localhost:4004/catalog/Projects HTTP/1.1
+Content-Type: application/json
+
+{
+    "projectName":"Project 2.0"
+}
+
+### POST Objects
+
+POST http://localhost:4004/catalog/Objects HTTP/1.1
+Content-Type: application/json
+
+{
+ "projectID"    : "e312162f-e55d-465f-9704-8f327743ea76",
+ "objectName"   : "Workflow Very High",
+ "objectType":    "F"
+}
+
+### POST Objects
+
+POST http://localhost:4004/catalog/Objects HTTP/1.1
+Content-Type: application/json
+
+{
+ "projectID"    : "bee3afba-2601-4983-9ed7-d73081752754",
+ "objectName"   : "object1"
+}
+
+### POST SubObjects
+
+POST http://localhost:4004/catalog/SubObjects HTTP/1.1
+Content-Type: application/json
+
+{
+	"objectID": "5da5ade6-7006-470b-bbd9-8157b2952d48",
+	"projectID": "bee3afba-2601-4983-9ed7-d73081752754",
+    "subObjectType": "CAP",
+	"ricef": [{
+			"complexityID": "CAP1",
+			"eW": 0,
+			"oW": 0
+		},
+		{
+			"complexityID": "CAP2",
+			"eW": 0,
+			"oW": 0
+		}
+	]
+}
+
+### PATCH SubObjects
+
+PATCH http://localhost:4004/catalog/SubObjects/e176b945-6c82-4a60-bf2a-6ec90daa1de2 HTTP/1.1
+Content-Type: application/json
+
+{
+	"objectID": "5da5ade6-7006-470b-bbd9-8157b2952d48",
+	"projectID": "bee3afba-2601-4983-9ed7-d73081752754",
+    "subObjectType": "CAP",
+	"ricef": [{
+			"complexityID": "CAP1",
+			"eW": 4,
+			"oW": 1
+		},
+		{
+			"complexityID": "CAP2",
+			"eW": 3,
+			"oW": 1
+		}
+	]
+}
+
+###
+PATCH http://localhost:4004/catalog/Objects/cddb25fd-7df7-44b9-9c56-a38e03c40511
+Content-Type: application/json
+
+{
+  
+  "objectName": "Interface Low",
+  "objectType": "I"
+
+
+}
+
+###
+GET http://localhost:4004/catalog/Objects?$filter=projectID eq 'e312162f-e55d-465f-9704-8f327743ea76'
+
+
+### POST Criteria
+
+POST  http://localhost:4004/catalog/Criteria HTTP/1.1
+Content-Type: application/json
+
+[
+	{
+		"complexityID"	: "API",
+		"description"	: "Number of Products creation",
+		"W1"			: 1
+	},
+	{
+		"complexityID"	: "API",
+		"description"	: "Number of Products creation",
+		"W2"			: 3
+	}
+]
+
+
+
+### GET Criteria
+
+GET  http://localhost:4004/catalog/Criteria
+
+### POST Criteria
+
+POST  http://localhost:4004/catalog/Criteria HTTP/1.1
+Content-Type: application/json
+
+{
+	"complexityID"	: "API",
+	"description"	: "Number of Products creation2",
+	"W2"			: 4,
+	"proj_projectID": "dd78b691-2523-4b27-96cc-787246ec2cea"
+}
+
+### GET Critera sel
+GET http://localhost:4004/catalog/Criteria?$filter=proj_projectID eq dd78b691-2523-4b27-96cc-787246ec2cea
+
+###
+
+DELETE http://localhost:4004/catalog/Projects/16f0c9e3-240f-4c4f-a9c0-c0619b1b618e
+Content-Type: application/json
